@@ -17,6 +17,15 @@
         "revision" : "e8b317b845138111b9b1356650491dd5f4d3f435",
         "version" : "0.0.7"
       }
+    },
+    {
+      "identity" : "swifthaptics",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pxlshpr/SwiftHaptics",
+      "state" : {
+        "revision" : "c3069ce1390e5562b2d2c0e4ffed5a1b4e9aba54",
+        "version" : "0.1.3"
+      }
     }
   ],
   "version" : 2
