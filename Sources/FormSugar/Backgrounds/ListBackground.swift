@@ -10,5 +10,13 @@ public struct ListBackground: View {
 }
 
 public func listBackgroundColor(colorScheme: ColorScheme) -> Color {
-    colorScheme == .light ? Color(.systemGroupedBackground) : Color(hex: "191919")
+    var lightColor: Color {
+#if os(iOS)
+        Color(.systemGroupedBackground)
+#else
+        Color(.windowBackgroundColor)
+#endif
+    }
+
+    return colorScheme == .light ? lightColor : Color(hex: "191919")
 }

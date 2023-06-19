@@ -9,5 +9,14 @@ public struct FormCellBackground: View {
 }
 
 public func formCellBackgroundColor(colorScheme: ColorScheme) -> Color {
-    colorScheme == .light ? Color(.secondarySystemGroupedBackground) : Color(hex: "2C2C2E")
+    
+    var lightColor: Color {
+#if os(iOS)
+        Color(.secondarySystemGroupedBackground)
+#else
+        Color(.controlBackgroundColor)
+#endif
+    }
+    
+    return colorScheme == .light ? lightColor : Color(hex: "2C2C2E")
 }

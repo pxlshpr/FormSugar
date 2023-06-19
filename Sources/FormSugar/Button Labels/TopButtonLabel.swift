@@ -32,12 +32,22 @@ public struct TopButtonLabel: View {
     var backgroundColor: Color {
         switch backgroundStyle {
         case .standard:
+#if os(iOS)
             return Color(.quaternaryLabel).opacity(0.5)
+#else
+            return Color(.quaternaryLabelColor).opacity(0.5)
+#endif
 //            return Color(hex: colorScheme == .light ? "EEEEEF" : "313135")
         case .forPlacingOverMaterials:
+#if os(iOS)
             return colorScheme == .light
             ? Color(hex: "EEEEEF").opacity(0.5)
             : Color(.quaternaryLabel).opacity(0.5)
+#else
+            return colorScheme == .light
+            ? Color(hex: "EEEEEF").opacity(0.5)
+            : Color(.quaternaryLabelColor).opacity(0.5)
+#endif
         }
     }
     

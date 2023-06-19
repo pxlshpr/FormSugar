@@ -10,5 +10,13 @@ public struct FormBackground: View {
 }
 
 public func formBackgroundColor(colorScheme: ColorScheme) -> Color {
-    colorScheme == .dark ? Color(hex: "1C1C1E") : Color(.systemGroupedBackground)
+    var lightColor: Color {
+#if os(iOS)
+        Color(.systemGroupedBackground)
+#else
+        Color(.windowBackgroundColor)
+#endif
+    }
+
+    return colorScheme == .dark ? Color(hex: "1C1C1E") : lightColor
 }

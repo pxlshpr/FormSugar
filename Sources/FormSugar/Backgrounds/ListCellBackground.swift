@@ -10,5 +10,13 @@ public struct ListCellBackground: View {
 }
 
 public func listCellBackgroundColor(colorScheme: ColorScheme) -> Color {
-    colorScheme == .light ? Color(.secondarySystemGroupedBackground) : Color(hex: "232323")
+    var lightColor: Color {
+#if os(iOS)
+        Color(.secondarySystemGroupedBackground)
+#else
+        Color(.controlBackgroundColor)
+#endif
+    }
+
+    return colorScheme == .light ? lightColor : Color(hex: "232323")
 }

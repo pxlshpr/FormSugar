@@ -1,10 +1,19 @@
 import SwiftUI
 
 public func bottomAccessoryButtonLabel(_ systemImage: String, material: Material = .ultraThinMaterial) -> some View {
-    Image(systemName: systemImage)
+    
+    var color: Color {
+#if os(iOS)
+        Color(.secondaryLabel)
+#else
+        Color(.secondaryLabelColor)
+#endif
+    }
+    
+    return Image(systemName: systemImage)
         .imageScale(.medium)
         .fontWeight(.medium)
-        .foregroundColor(Color(.secondaryLabel))
+        .foregroundColor(color)
         .frame(width: 38, height: 38)
         .background(
             Circle()
@@ -14,10 +23,19 @@ public func bottomAccessoryButtonLabel(_ systemImage: String, material: Material
 }
 
 public func bottomAccessoryButtonLabel(text: String, material: Material = .ultraThinMaterial) -> some View {
-    Text(text)
+    
+    var color: Color {
+#if os(iOS)
+        Color(.secondaryLabel)
+#else
+        Color(.secondaryLabelColor)
+#endif
+    }
+    
+    return Text(text)
         .textCase(.uppercase)
         .font(.system(size: 14, weight: .semibold, design: .rounded))
-        .foregroundColor(Color(.secondaryLabel))
+        .foregroundColor(color)
         .frame(height: 38)
         .padding(.horizontal, 10)
         .background(

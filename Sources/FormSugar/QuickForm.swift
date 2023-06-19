@@ -152,7 +152,9 @@ public struct QuickForm<Content: View>: View {
     }
     
     func tappedSave(_ saveAction: FormConfirmableAction) {
+#if os(iOS)
         Haptics.successFeedback()
+#endif
         saveAction.handler()
         dismiss()
     }
@@ -205,7 +207,9 @@ public struct QuickForm<Content: View>: View {
     
     var dismissButton: some View {
         Button {
+#if os(iOS)
             Haptics.feedback(style: .soft)
+#endif
             dismiss()
         } label: {
             CloseButtonLabel(forUseOutsideOfNavigationBar: true)
@@ -253,13 +257,22 @@ public struct QuickForm<Content: View>: View {
         }
 
         func imageLabel(_ imageName: String) -> some View {
-            HStack {
+            
+            var foregroundColor: Color {
+#if os(iOS)
+                Color(.quaternaryLabel)
+#else
+                Color(.quaternaryLabelColor)
+#endif
+            }
+            
+            return HStack {
                 Image(systemName: "trash.circle.fill")
                     .font(.system(size: 30))
                     .symbolRenderingMode(.palette)
                     .foregroundStyle(
                         Color.red.opacity(0.75),
-                        Color(.quaternaryLabel).opacity(0.5)
+                        foregroundColor.opacity(0.5)
                     )
             }
         }
@@ -282,7 +295,9 @@ public struct QuickForm<Content: View>: View {
 
         return Button {
             if action.shouldConfirm {
+#if os(iOS)
                 Haptics.warningFeedback()
+#endif
                 showingDeleteConfirmation = true
             } else {
                 action.handler()
